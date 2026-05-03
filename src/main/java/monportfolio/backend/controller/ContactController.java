@@ -2,7 +2,7 @@ package monportfolio.backend.controller;
 
 import monportfolio.backend.dto.ContactRequest;
 import monportfolio.backend.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,12 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class ContactController {
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
+
+    public ContactController(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     @PostMapping
-    public String sendMessage(@RequestBody ContactRequest request) {
-        emailService.sendEmail(request);
-        return "Message envoyé";
+    public ResponseEntity<String> sendMessage(@RequestBody ContactRequest request) {
+        try {
+            emailService.sendEmail(request);
+            return ResponseEntity.ok("Message envoyé");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Erreur envoi email");
+        }
     }
 }

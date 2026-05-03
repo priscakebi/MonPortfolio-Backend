@@ -15,7 +15,10 @@ public class EmailService {
     public void sendEmail(ContactRequest request) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("priscakebi00@gmail.com"); // 
+
+        message.setFrom("priscakebi00@gmail.com"); // 
+        message.setTo("priscakebi00@gmail.com");   // 
+
         message.setSubject("Nouveau message du portfolio");
 
         message.setText(
@@ -25,5 +28,6 @@ public class EmailService {
         );
 
         mailSender.send(message);
+        System.out.println("ENVOI EMAIL VERS: " + request.getEmail());
     }
 }
