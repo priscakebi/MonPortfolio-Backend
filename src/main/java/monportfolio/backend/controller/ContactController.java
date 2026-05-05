@@ -17,13 +17,13 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<String> sendMessage(@RequestBody ContactRequest request) {
-        try {
-            emailService.sendEmail(request);
-            return ResponseEntity.ok("Message envoyé");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Erreur envoi email");
-        }
+public ResponseEntity<String> sendMessage(@RequestBody ContactRequest request) {
+    try {
+        emailService.sendEmail(request);
+        return ResponseEntity.ok("OK");
+    } catch (Exception e) {
+        e.printStackTrace(); // 🔥 IMPORTANT
+        return ResponseEntity.status(500).body(e.getMessage());
     }
+}
 }
