@@ -3,7 +3,7 @@ package monportfolio.backend;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.mail.api-key=test")
 class BackendApplicationTests {
 
 	@Test

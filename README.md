@@ -7,11 +7,22 @@ Il gère l’envoi des messages du formulaire de contact via email.
 
 ## Technologies utilisées
 
-- Java 21
+- Java 17
 - Spring Boot 3
 - Spring Web
-- Spring Mail
+- API Brevo (envoi d’email en HTTPS)
 - Maven
+
+---
+
+## Variables d’environnement
+
+| Variable | Obligatoire | Description |
+|---|---|---|
+| `BREVO_API_KEY` | oui | Clé API Brevo |
+| `CORS_ALLOWED_ORIGINS` | oui en prod | URL(s) du frontend, séparées par des virgules |
+| `MAIL_SENDER` | non | Expéditeur vérifié dans Brevo |
+| `MAIL_RECIPIENT` | non | Adresse qui reçoit les messages |
 
 ---
 
